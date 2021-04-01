@@ -55,18 +55,20 @@ bool checkForLife(vector<vector<Cell>> cellGrid)    {   //  check if life has en
  */
 void populateCellGrid(vector<vector<Cell>> &cellGrid)
 {
-    for (int i = 0; i < 10; i++)    { //  10 is a magic number, basically the min y size
-        for (int j = 0; j < 10; j++){ //  10 is a magic number, basically the min x size
+    for (int i = 0; i < 20; i++)    { //  20 is a magic number, basically the min y size
+    vector<Cell> cellVec;
+    cellGrid.push_back(cellVec);
+        for (int j = 0; j < 40; j++){ //  40 is a magic number, basically the min x size
             Cell c;
             //  get random number for use in generation
-            srand(time(NULL));  //  seed
+            srand(time(NULL)*rand());  //  seed1
             int n = rand() % 2; //  has to either be 0 or 1, dead or alive
             if (n == 1)
             {
                 c.setAlive();
             }
 
-            cellGrid[i][j] = c;
+            cellGrid[i].push_back(c);
         }
     }
 }
