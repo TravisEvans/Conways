@@ -1,0 +1,25 @@
+todo list for ConwaysGameOfLife
+
+----------------------step 1.
+----------------------    create cell
+----------------------    -   needs dead and alive state
+done
+
+step 2.
+----------------------    create grid
+    -   should be infinite, dont know how to do that yet
+    -   maybe give it a border for now
+step 3.
+----------------------     populate grid
+    -   firstly, with arbitrary positions
+    -   finally, with random positions
+step 4.
+    step through one cycle of the game
+    -   use 2 seperate boards, calculate them in second (calc) board then 
+        replace them in the first (display) board
+    step through multiple cycles of the game
+step 5.
+    step through whole game
+step 6.
+    add recursion
+    -   upon all cells dying, generate board again
