@@ -11,35 +11,45 @@ using namespace Conways;
 #endif
 
 // declarations
-void run(vector<vector<Cell>> cellGrid);
-bool checkForLife(vector<vector<Cell>> cellGrid);
-void populateCellGrid(vector<vector<Cell>> &cellGrid);
-void displayCellGrid(vector<vector<Cell>> cellGrid);
+void run(vector<vector<Cell>> displayGrid, vector<vector<Cell>> calculationGrid);
+bool checkForLife(vector<vector<Cell>> displayGrid);
+void populateCellGrid(vector<vector<Cell>> &displayGrid);
+void displayCellGrid(vector<vector<Cell>> displayGrid);
+void gameStep(vector<vector<Cell>> displayGrid, vector<vector<Cell>> calculationGrid);
 
 /**
  * main function
  * @param none doesnt exist
  */
-int main()  {
-    vector<vector<Cell>> cellGrid;
+int main()
+{
+    vector<vector<Cell>> displayGrid;
+    vector<vector<Cell>> calculationGrid;
 
-    run(cellGrid);  //  single instance of grid
+    run(displayGrid, calculationGrid);  //  single instance of grids
 
     return 0;
 }
 
-void run(vector<vector<Cell>> cellGrid)
+void run(vector<vector<Cell>> displayGrid, vector<vector<Cell>> calculationGrid)
 {
-    if (!checkForLife(cellGrid))    {   //  so, if there is no life, do...
-        populateCellGrid(cellGrid);   //  populate dead grid
+    if (!checkForLife(displayGrid))    {   //  so, if there is no life, do...
+        populateCellGrid(displayGrid);   //  populate dead grid
     }
 
-    displayCellGrid(cellGrid);     //  see how life is going
+    system("clear");    //  with stepping, will clear screen
+    cout << "\n\n\n" << endl;
+
+    displayCellGrid(displayGrid); //  see how life is going
+    cout << endl;
+    gameStep(displayGrid, calculationGrid);    //  see the calculation grid
+
+    cout << "\n\n\n" << endl;
 }
 
-bool checkForLife(vector<vector<Cell>> cellGrid)    {   //  check if life has ended (recursion reasons)
+bool checkForLife(vector<vector<Cell>> displayGrid)    {   //  check if life has ended (recursion reasons)
     bool life = false;
-    for (vector<Cell> cellVec : cellGrid)   {
+    for (vector<Cell> cellVec : displayGrid)   {
         for (Cell cell : cellVec)   {
             if (cell.getState() == true)    {
                 life = true;
@@ -50,15 +60,15 @@ bool checkForLife(vector<vector<Cell>> cellGrid)    {   //  check if life has en
 }
 
 /**
- * Currently populates a referenced cellGrid with arbitrary numbers.
+ * Currently populates a referenced displayGrid with arbitrary numbers.
  * TODO: add random population / generation
  */
-void populateCellGrid(vector<vector<Cell>> &cellGrid)
+void populateCellGrid(vector<vector<Cell>> &displayGrid)
 {
-    for (int i = 0; i < 20; i++)    { //  20 is a magic number, basically the min y size
+    for (int i = 0; i < 10; i++)    { //  10 is a magic number, basically the min y size
     vector<Cell> cellVec;
-    cellGrid.push_back(cellVec);
-        for (int j = 0; j < 40; j++){ //  40 is a magic number, basically the min x size
+    displayGrid.push_back(cellVec);
+        for (int j = 0; j < 20; j++){ //  20 is a magic number, basically the min x size
             Cell c;
             //  get random number for use in generation
             srand(time(NULL)*rand());  //  seed1
@@ -68,18 +78,20 @@ void populateCellGrid(vector<vector<Cell>> &cellGrid)
                 c.setAlive();
             }
 
-            cellGrid[i].push_back(c);
+            displayGrid[i].push_back(c);
         }
     }
 }
 
-void displayCellGrid(vector<vector<Cell>> cellGrid)
+void displayCellGrid(vector<vector<Cell>> displayGrid)
 {
-    for (vector<Cell> cellVec : cellGrid)
+    for (vector<Cell> cellVec : displayGrid)
     {
+        cout << "\t\t";
         for (Cell cell : cellVec)
         {
             cout << cell.getState();
+            //□ 
         }
         cout << endl;
     }

@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -Wall
 PROG = ConwaysGameOfLife
 
-SRCS = ConwaysGameOfLife.cpp Cell.cpp
+SRCS = ConwaysGameOfLife.cpp Cell.cpp ConwayLogic.cpp
 
 LIBS = # i.e. -lX11 -lCImg 
 
