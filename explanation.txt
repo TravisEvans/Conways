@@ -1,0 +1,56 @@
+c++ is a coding language
+
+c++ is close to a machine language, it interacts with the hardware pretty close, as it is nearly 'c'
+c# is stupid and only used for Microsoft and / or netcode or some shit
+
+Conways Game of Life
+4 rules 
+    rule 1. if <2 neighbours, then die
+    rule 2. if 2 or 3 neighbours, then stay the same
+    rule 3. if 3 neighbours, then become alive (from dead)
+    rule 4. if >3 neighbours, then die
+    
+given this grid:
+
+        xxxxxxxxx
+        xxxxxxxxx
+        xxxxxxxxx
+        all are dead
+
+        xxxxxxxxx
+        xxx0x0xxx
+        xxx0000xx
+        xxxxxxxxx
+        xxxxxxxxx
+        6 are alive, the next step w0uld make it
+
+        xxxxxxxxx
+        xxx0x00xx
+        xxx0x00xx
+        xxxxx0xxx
+        xxxxxxxxx
+
+
+
+vvvvvvvvvvvvvvvvvvvvvvvvvvvv
+vvvvvvvvvvvvvvvvvvvvvvvvvvvv
+vvvvvvvvvvvvvvvvvvvvvvvvvvvv
+vvvvvvvvvvvvvvvvvvvvvvvvvvvv
+vvvvvvvvvvvvvvvvvvvvvvvvvvvv
+vvvvvvvvvvvvvvvvvvvvvvvvvvvv
+vvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

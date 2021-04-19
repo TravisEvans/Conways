@@ -19,7 +19,10 @@ using namespace Conways;
 // #include <unistd.h> //  linux
 // #endif
 
-// declarations
+//  variables
+int lifeCheckLimiter = 999;
+
+// functions
 void run(vector<vector<Cell>> &displayGrid, vector<vector<Cell>> &calculationGrid);
 bool checkForLife(vector<vector<Cell>> displayGrid);
 void populateCellGrid(vector<vector<Cell>> &displayGrid);
@@ -40,7 +43,7 @@ int main()
 
     while (true)    {
         run(displayGrid, calculationGrid);  //  single instance of grids
-        this_thread::sleep_for(chrono::milliseconds(MS_PER_FRAME));
+        // this_thread::sleep_for(chrono::milliseconds(MS_PER_FRAME));
     }
 
     return 0;
@@ -51,7 +54,6 @@ void run(vector<vector<Cell>> &displayGrid, vector<vector<Cell>> &calculationGri
     if (!checkForLife(displayGrid))    {   //  so, if there is no life, do...
         populateCellGrid(displayGrid);   //  populate dead grid
     }
-
     system("clear");    //  with stepping, will clear screen
     cout << "\n\n\n" << endl;
 
@@ -63,15 +65,20 @@ void run(vector<vector<Cell>> &displayGrid, vector<vector<Cell>> &calculationGri
 }
 
 bool checkForLife(vector<vector<Cell>> displayGrid)    {   //  check if life has ended (recursion reasons)
-    bool life = false;
-    for (vector<Cell> cellVec : displayGrid)   {
-        for (Cell cell : cellVec)   {
-            if (cell.getState() == true)    {
-                life = true;
+    if (lifeCheckLimiter >= 100)    {
+        for (vector<Cell> cellVec : displayGrid)   {
+            for (Cell cell : cellVec)   {
+                if (cell.getState() == true)    {
+                    lifeCheckLimiter = 0;
+                    return true;    //  life exists
+                }
             }
         }
+
+        return false;   //  lifen't
     }
-    return life;
+    lifeCheckLimiter++;
+    return true;    //  there is assumed to be life here
 }
 
 /**
@@ -79,6 +86,7 @@ bool checkForLife(vector<vector<Cell>> displayGrid)    {   //  check if life has
  */
 void populateCellGrid(vector<vector<Cell>> &displayGrid)
 {
+    displayGrid.clear();
     for (int i = 0; i < 50; i++)    { //  10 is a magic number, basically the min y size
     vector<Cell> cellVec;
     displayGrid.push_back(cellVec);
